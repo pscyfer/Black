@@ -1,0 +1,9 @@
+@page "/"
+@using Microsoft.AspNetCore.Components.Web
+@namespace UpTRobot.Server.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+}
+<component type="typeof(UpTRobot.Client.App)" render-mode="WebAssemblyPrerendered" />

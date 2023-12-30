@@ -1,0 +1,459 @@
+﻿@using Identity.Core
+<!-- Navbar -->
+
+<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+     id="layout-navbar">
+    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+        <a class="nav-item nav-link px-0 me-xl-4"
+           href="javascript:void(0)">
+            <i class="mdi mdi-menu mdi-24px"></i>
+        </a>
+    </div>
+
+    <div class="navbar-nav-right d-flex align-items-center"
+         id="navbar-collapse">
+        <!-- Search -->
+        <div class="navbar-nav align-items-center">
+            <div class="nav-item navbar-search-wrapper mb-0">
+                <a class="nav-item nav-link search-toggler fw-normal px-0"
+                   href="javascript:void(0);">
+                    <i class="mdi mdi-magnify mdi-24px scaleX-n1-rtl"></i>
+                    <span class="d-none d-md-inline-block text-muted">جستوجو (Ctrl+/)</span>
+                </a>
+            </div>
+        </div>
+        <!-- /Search -->
+
+        <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+
+            <!-- Style Switcher -->
+            <li class="nav-item me-1 me-xl-0">
+                <a class="nav-link btn btn-text-secondary rounded-pill btn-icon style-switcher-toggle hide-arrow waves-effect waves-light"
+                   href="javascript:void(0);">
+                    <i class="mdi mdi-24px mdi-weather-sunny"></i>
+                </a>
+            </li>
+            <!--/ Style Switcher -->
+            <!-- Quick links  -->
+            @*    <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-1 me-xl-0">
+            <a class="nav-link btn btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow waves-effect waves-light"
+            href="javascript:void(0);"
+            data-bs-toggle="dropdown"
+            data-bs-auto-close="outside"
+            aria-expanded="false">
+            <i class="mdi mdi-view-grid-plus-outline mdi-24px"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end py-0">
+            <div class="dropdown-menu-header border-bottom">
+            <div class="dropdown-header d-flex align-items-center py-3">
+            <h5 class="text-body mb-0 me-auto">میانبر ها</h5>
+            <a href="javascript:void(0)"
+            class="dropdown-shortcuts-add text-muted"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            aria-label="اضافه کردن میانبر"
+            data-bs-original-title="اضافه کردن میانبر">
+            <i class="mdi mdi-view-grid-plus-outline mdi-24px"></i>
+            </a>
+            </div>
+            </div>
+            <div class="dropdown-shortcuts-list scrollable-container ps">
+            <div class="row row-bordered overflow-visible g-0">
+            <div class="dropdown-shortcuts-item col">
+            <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+            <i class="mdi mdi-calendar fs-4"></i>
+            </span>
+            <a href="app-calendar.html" class="stretched-link">تقویم</a>
+            <small class="text-muted mb-0">قرار های ملاقات</small>
+            </div>
+            <div class="dropdown-shortcuts-item col">
+            <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+            <i class="mdi mdi-file-document-outline fs-4"></i>
+            </span>
+            <a href="app-invoice-list.html" class="stretched-link">برنامه صورتحساب</a>
+            <small class="text-muted mb-0">مدیریت حساب ها</small>
+            </div>
+            </div>
+            <div class="row row-bordered overflow-visible g-0">
+            <div class="dropdown-shortcuts-item col">
+            <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+            <i class="mdi mdi-account-outline fs-4"></i>
+            </span>
+            <a href="app-user-list.html" class="stretched-link">برنامه کاربر</a>
+            <small class="text-muted mb-0">مدیریت کاربران</small>
+            </div>
+            <div class="dropdown-shortcuts-item col">
+            <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+            <i class="mdi mdi-shield-check-outline fs-4"></i>
+            </span>
+            <a href="app-access-roles.html" class="stretched-link">مدیریت نقش ها</a>
+            <small class="text-muted mb-0">مجوز ها</small>
+            </div>
+            </div>
+            <div class="row row-bordered overflow-visible g-0">
+            <div class="dropdown-shortcuts-item col">
+            <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+            <i class="mdi mdi-chart-pie-outline fs-4"></i>
+            </span>
+            <a href="index.html" class="stretched-link">داشبورد</a>
+            <small class="text-muted mb-0">پروفایل کاربر</small>
+            </div>
+            <div class="dropdown-shortcuts-item col">
+            <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+            <i class="mdi mdi-cog-outline fs-4"></i>
+            </span>
+            <a href="pages-account-settings-account.html"
+            class="stretched-link">تنظیمات</a>
+            <small class="text-muted mb-0"> تنظیمات حساب </small>
+            </div>
+            </div>
+            <div class="row row-bordered overflow-visible g-0">
+            <div class="dropdown-shortcuts-item col">
+            <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+            <i class="mdi mdi-help-circle-outline fs-4"></i>
+            </span>
+            <a href="pages-help-center-landing.html"
+            class="stretched-link">مرکز راهنمایی</a>
+            <small class="text-muted mb-0">سولات متدال و مقلات</small>
+            </div>
+            <div class="dropdown-shortcuts-item col">
+            <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
+            <i class="mdi mdi-dock-window fs-4"></i>
+            </span>
+            <a href="modal-examples.html" class="stretched-link">مودال ها</a>
+            <small class="text-muted mb-0">پاپ های کاربردی</small>
+            </div>
+            </div>
+
+            </div>
+            </div>
+            </li>*@
+            <!-- Quick links -->
+            <!-- Notification -->
+            <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-2 me-xl-1">
+                <a class="nav-link btn btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow waves-effect waves-light"
+                   href="javascript:void(0);"
+                   data-bs-toggle="dropdown"
+                   data-bs-auto-close="outside"
+                   aria-expanded="false">
+                    <i class="mdi mdi-bell-outline mdi-24px"></i>
+                    <span class="position-absolute top-0 start-50 translate-middle-y badge badge-dot bg-danger mt-2 border"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end py-0">
+                    <li class="dropdown-menu-header border-bottom">
+                        <div class="dropdown-header d-flex align-items-center py-3">
+                            <h6 class="mb-0 me-auto">اعلان ها</h6>
+                            <span class="badge rounded-pill bg-label-primary">8 جدید</span>
+                        </div>
+                    </li>
+                    <li class="dropdown-notifications-list scrollable-container ps">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item list-group-item-action dropdown-notifications-item waves-effect waves-light">
+                                <div class="d-flex gap-2">
+                                    <div class="flex-shrink-0">
+                                        <div class="avatar me-1">
+                                            <img src="../../assets/img/avatars/1.png"
+                                                 alt=""
+                                                 class="w-px-40 h-auto rounded-circle" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
+                                        <h6 class="mb-1 text-truncate">
+                                            لورم ایپسوم متن ساختگی با
+                                        </h6>
+                                        <small class="text-truncate text-body">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از</small>
+                                    </div>
+                                    <div class="flex-shrink-0 dropdown-notifications-actions">
+                                        <small class="text-muted">1ساعت قبل</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-action dropdown-notifications-item waves-effect waves-light">
+                                <div class="d-flex gap-2">
+                                    <div class="flex-shrink-0">
+                                        <div class="avatar me-1">
+                                            <span class="avatar-initial rounded-circle bg-label-danger">MG</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
+                                        <h6 class="mb-1 text-truncate">
+                                            لورم ایپسوم متن ساختگی با
+                                        </h6>
+                                        <small class="text-truncate text-body">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از</small>
+                                    </div>
+                                    <div class="flex-shrink-0 dropdown-notifications-actions">
+                                        <small class="text-muted">12ساعت قبل</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read waves-effect waves-light">
+                                <div class="d-flex gap-2">
+                                    <div class="flex-shrink-0">
+                                        <div class="avatar me-1">
+                                            <img src="../../assets/img/avatars/2.png"
+                                                 alt=""
+                                                 class="w-px-40 h-auto rounded-circle" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
+                                        <h6 class="mb-1 text-truncate">
+                                            لورم ایپسوم متن ساختگی با
+                                        </h6>
+                                        <small class="text-truncate text-body">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از</small>
+                                    </div>
+                                    <div class="flex-shrink-0 dropdown-notifications-actions">
+                                        <small class="text-muted">1ساعت قبل</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-action dropdown-notifications-item waves-effect waves-light">
+                                <div class="d-flex gap-2">
+                                    <div class="flex-shrink-0">
+                                        <div class="avatar me-1">
+                                            <span class="avatar-initial rounded-circle bg-label-success">
+                                                <i class="mdi mdi-cart-outline"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
+                                        <h6 class="mb-1 text-truncate">
+                                            لورم ایپسوم متن ساختگی با
+                                        </h6>
+                                        <small class="text-truncate text-body">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از</small>
+                                    </div>
+                                    <div class="flex-shrink-0 dropdown-notifications-actions">
+                                        <small class="text-muted">1 روز قبل</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read waves-effect waves-light">
+                                <div class="d-flex gap-2">
+                                    <div class="flex-shrink-0">
+                                        <div class="avatar me-1">
+                                            <img src="../../assets/img/avatars/9.png"
+                                                 alt=""
+                                                 class="w-px-40 h-auto rounded-circle" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
+                                        <h6 class="mb-1 text-truncate">
+                                            لورم ایپسوم متن ساختگی با
+                                        </h6>
+                                        <small class="text-truncate text-body">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از</small>
+                                    </div>
+                                    <div class="flex-shrink-0 dropdown-notifications-actions">
+                                        <small class="text-muted">2 روز قبل</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read waves-effect waves-light">
+                                <div class="d-flex gap-2">
+                                    <div class="flex-shrink-0">
+                                        <div class="avatar me-1">
+                                            <span class="avatar-initial rounded-circle bg-label-success">
+                                                <i class="mdi mdi-chart-pie-outline"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
+                                        <h6 class="mb-1 text-truncate">
+                                            لورم ایپسوم متن ساختگی با
+                                        </h6>
+                                        <small class="text-truncate text-body">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از</small>
+                                    </div>
+                                    <div class="flex-shrink-0 dropdown-notifications-actions">
+                                        <small class="text-muted">3 روز قبل</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read waves-effect waves-light">
+                                <div class="d-flex gap-2">
+                                    <div class="flex-shrink-0">
+                                        <div class="avatar me-1">
+                                            <img src="../../assets/img/avatars/5.png"
+                                                 alt=""
+                                                 class="w-px-40 h-auto rounded-circle" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
+                                        <h6 class="mb-1 text-truncate">
+                                            لورم ایپسوم متن ساختگی با
+                                        </h6>
+                                        <small class="text-truncate text-body">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از</small>
+                                    </div>
+                                    <div class="flex-shrink-0 dropdown-notifications-actions">
+                                        <small class="text-muted">4 روز قبل</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-action dropdown-notifications-item waves-effect waves-light">
+                                <div class="d-flex gap-2">
+                                    <div class="flex-shrink-0">
+                                        <div class="avatar me-1">
+                                            <img src="../../assets/img/avatars/6.png"
+                                                 alt=""
+                                                 class="w-px-40 h-auto rounded-circle" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
+                                        <h6 class="mb-1 text-truncate">
+                                            لورم ایپسوم متن ساختگی با
+                                        </h6>
+                                        <small class="text-truncate text-body">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از</small>
+                                    </div>
+                                    <div class="flex-shrink-0 dropdown-notifications-actions">
+                                        <small class="text-muted">5روز قبل</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read waves-effect waves-light">
+                                <div class="d-flex gap-2">
+                                    <div class="flex-shrink-0">
+                                        <div class="avatar me-1">
+                                            <span class="avatar-initial rounded-circle bg-label-warning">
+                                                <i class="mdi mdi-alert-circle-outline"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column flex-grow-1 overflow-hidden w-px-200">
+                                        <h6 class="mb-1 text-truncate">
+                                            لورم ایپسوم متن ساختگی با
+                                        </h6>
+                                        <small class="text-truncate text-body">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از</small>
+                                    </div>
+                                    <div class="flex-shrink-0 dropdown-notifications-actions">
+                                        <small class="text-muted">5 روز قبل</small>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li class="dropdown-menu-footer border-top p-2">
+                        <a href="javascript:void(0);"
+                           class="btn btn-primary d-flex justify-content-center waves-effect waves-light">
+                            مشاهده همه اعلان ها
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!--/ Notification -->
+            <!-- User -->
+            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                <a class="nav-link dropdown-toggle hide-arrow"
+                   href="javascript:void(0);"
+                   data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                        <img src="@AuthHelper.GetUserAvatar(User)"
+                             alt=""
+                             class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <a class="dropdown-item waves-effect"
+                           asp-action="ManageUser" asp-controller="UserManager" asp-route-userId="@AuthHelper.GetUserId(User)">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 me-3">
+                                    <div class="avatar avatar-online">
+                                        <img src="@AuthHelper.GetUserAvatar(User)"
+                                             alt=""
+                                             class="w-px-40 h-auto rounded-circle" />
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <span class="fw-semibold d-block">@AuthHelper.GetFullName(User)</span>
+                                    <small class="text-muted">@AuthHelper.GetRoleNames(User)</small>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                        <a class="dropdown-item waves-effect"
+                           asp-action="ManageUser" asp-controller="UserManager" asp-route-userId="@AuthHelper.GetUserId(User)">
+                            <i class="mdi mdi-account-outline me-2"></i>
+                            <span class="align-middle">پروفایل من</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <div class="dropdown-divider"></div>
+                    </li>
+                   
+                    <li>
+                        <a class="dropdown-item waves-effect"
+                           asp-controller="Authentication" asp-action="Logout"
+                           target="_blank">
+                            <i class="mdi mdi-logout me-2"></i>
+                            <span class="align-middle">خروج</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!--/ User -->
+        </ul>
+    </div>
+
+    <!-- Search Small Screens -->
+    <div class="navbar-search-wrapper search-input-wrapper d-none">
+        <span class="twitter-typeahead"
+              style="position: relative; display: inline-block">
+            <input type="text"
+                   class="form-control search-input container-xxl border-0 tt-input"
+                   placeholder="جستوجو..."
+                   aria-label="جستوجو..."
+                   autocomplete="off"
+                   spellcheck="false"
+                   dir="auto"
+                   style="position: relative; vertical-align: top" />
+            <pre aria-hidden="true"
+                 style="
+                    position: absolute;
+                    visibility: hidden;
+                    white-space: pre;
+                    font-family: Inter, -apple-system, BlinkMacSystemFont,
+                      'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+                      'Droid Sans', 'Helvetica Neue', sans-serif;
+                    font-size: 15px;
+                    font-style: normal;
+                    font-variant: normal;
+                    font-weight: 400;
+                    word-spacing: 0px;
+                    letter-spacing: 0px;
+                    text-indent: 0px;
+                    text-rendering: auto;
+                    text-transform: none;
+                  "></pre>
+            <div class="tt-menu navbar-search-suggestion ps"
+                 style="
+                    position: absolute;
+                    top: 100%;
+                    left: 0px;
+                    z-index: 100;
+                    display: none;
+                  ">
+                <div class="tt-dataset tt-dataset-pages"></div>
+                <div class="tt-dataset tt-dataset-files"></div>
+                <div class="tt-dataset tt-dataset-members"></div>
+                <div class="ps__rail-x" style="left: 0px; bottom: 0px">
+                    <div class="ps__thumb-x"
+                         tabindex="0"
+                         style="left: 0px; width: 0px"></div>
+                </div>
+                <div class="ps__rail-y" style="top: 0px; right: 0px">
+                    <div class="ps__thumb-y"
+                         tabindex="0"
+                         style="top: 0px; height: 0px"></div>
+                </div>
+            </div>
+        </span>
+        <i class="mdi mdi-close search-toggler cursor-pointer"></i>
+    </div>
+</nav>
+
+
+<!-- / Navbar -->

@@ -1,0 +1,54 @@
+*,body,html{
+    font-family: Shabnam !important;
+}
+@font-face {
+    font-family: Shabnam;
+    src: url("./Shabnam/Shabnam.eot");
+    src: url("./Shabnam/Shabnam.eot?#iefix") format("embedded-opentype"), url("./Shabnam/Shabnam.woff2") format("woff2"), url("./Shabnam/Shabnam.woff") format("woff"), url("./Shabnam/Shabnam.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: Shabnam;
+    src: url("./Shabnam/Shabnam-Bold.eot");
+    src: url("./Shabnam/Shabnam-Bold.eot?#iefix") format("embedded-opentype"), url("./Shabnam/Shabnam-Bold.woff2") format("woff2"), url("./Shabnam/Shabnam-Bold.woff") format("woff"), url("./Shabnam/Shabnam-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+    font-display: fallback;
+}
+@font-face {
+    font-family: Shabnam;
+    src: url("./Shabnam/Shabnam-Thin.eot");
+    src: url("./Shabnam/Shabnam-Thin.eot?#iefix") format("embedded-opentype"), url("./Shabnam/Shabnam-Thin.woff2") format("woff2"), url("./Shabnam/Shabnam-Thin.woff") format("woff"), url("./Shabnam/Shabnam-Thin.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: Shabnam;
+    src: url("./Shabnam/Shabnam-Light.eot");
+    src: url("./Shabnam/Shabnam-Light.eot?#iefix") format("embedded-opentype"), url("./Shabnam/Shabnam-Light.woff2") format("woff2"), url("./Shabnam/Shabnam-Light.woff") format("woff"), url("./Shabnam/Shabnam-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: Shabnam;
+    src: url("./Shabnam/Shabnam-Medium.eot");
+    src: url("./Shabnam/Shabnam-Medium.eot?#iefix") format("embedded-opentype"), url("./Shabnam/Shabnam-Medium.woff2") format("woff2"), url("./Shabnam/Shabnam-Medium.woff") format("woff"), url("./Shabnam/Shabnam-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: fallback;
+}
+
+@font-face {
+    font-family: DimaMolsaq;
+    src: url("../Fonts/DimaMolsaq/DimaMolsaq.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: fallback;
+}

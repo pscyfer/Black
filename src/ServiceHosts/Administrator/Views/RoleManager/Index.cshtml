@@ -1,0 +1,21 @@
+﻿@model Common.AspNetCore.DataTableConfig.DataTableModel
+@{
+    ViewData["Title"] = "مدیریت نقش ها";
+}
+
+@await Html.PartialAsync("_DataTableStyle")
+<div class="row g-4 mb-4">
+   
+</div>
+<!-- Roles List Table -->
+<div class="card">
+    <div class="card-header border-bottom">
+        <h5 class="card-title">مدیریت  نقش ها</h5>
+
+    </div>
+    <div class="card-datatable table-responsive">
+        <Dt-Table TableModel="Model"></Dt-Table>
+    </div>
+</div>
+@await Html.PartialAsync("_DataTableScript")
+

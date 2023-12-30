@@ -1,0 +1,54 @@
+﻿@model Identity.ViewModels.RoleManager.RoleVm
+<div class="modal fade"
+     id="addUserModal"
+     tabindex="-1"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered ">
+        <div class="modal-content p-3 p-md-5">
+            <button type="button"
+                    class="btn-close btn-pinned"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            <div class="modal-body p-md-0">
+                <form asp-action="CreateOrUpdate" method="post" asp-antiforgery="true">
+                    @if (ViewData.ModelState.IsValid.ToString() == "False")
+                    {
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4"></div>
+                    }
+                    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+                    <input name="IsRefreshLoaction" type="hidden" value="True" />
+                    <input  type="hidden" asp-for="RoleId" />
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <div class="form-floating form-floating-outline">
+                                <input asp-for="Name" class="form-control" />
+                                <label asp-for="Name"></label>
+                            </div>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating form-floating-outline">
+                                <input asp-for="Description" class="form-control" />
+                                <label asp-for="Description"></label>
+                            </div>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="col-12 mt-5 text-center">
+                            <button type="button" data-save="modal"
+                                    class="btn btn-primary me-sm-3 me-1">
+                                ثبت
+                            </button>
+                            <button type="reset"
+                                    class="btn btn-outline-secondary"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                منصرف
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

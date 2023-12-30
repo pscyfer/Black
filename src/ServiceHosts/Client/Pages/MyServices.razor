@@ -1,0 +1,28 @@
+﻿@page "/MyServices"
+<PageTitle>سرویس های من</PageTitle>
+<RadzenRow>
+    <RadzenColumn SizeSM="12" SizeMD="6">
+        <RadzenText TagName="TagName.H3" TextStyle="TextStyle.H3">
+            مجید عزیز ، عصر شما بخیر
+        </RadzenText>
+    </RadzenColumn>
+    <RadzenColumn SizeMD="3" SizeSM="12">
+        <RadzenTextBox Placeholder="جستوجو..." class="w-100" />
+    </RadzenColumn>
+    <RadzenColumn SizeMD="3" SizeSM="12">
+            <RadzenLink Path="/Monitors/Create" Text="واکشی جدید">
+                <RadzenButton Text="واکشی جدید" Icon="add_circle_outline" ButtonStyle="ButtonStyle.Primary" />
+            </RadzenLink>
+    </RadzenColumn>
+</RadzenRow>
+<div class="mt-5">
+    <RadzenDataGrid Data="orderDetails" TItem="OrderDetail" AllowPaging="true" AllowSorting="true">
+        <Columns>
+            <RadzenDataGridColumn TItem="OrderDetail" TextAlign="TextAlign.Center" Property="Id" Title="شناسه" />
+            <RadzenDataGridColumn TItem="OrderDetail" TextAlign="TextAlign.Center" Property="Name" Title="نام" />
+            <RadzenDataGridColumn TItem="OrderDetail" TextAlign="TextAlign.Center" Property="Address" Title="آدرس" />
+        </Columns>
+    </RadzenDataGrid>
+    <RadzenPager HorizontalAlign="HorizontalAlign.Center" Count="orderDetails.Count()" PageSize="2" PageNumbersCount="2" />
+
+</div>

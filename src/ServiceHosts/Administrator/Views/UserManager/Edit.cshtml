@@ -1,0 +1,91 @@
+﻿@model UserEditViewModel
+@{
+    ViewData["Title"] = $"{Model.UserName} ویرایش ";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-style1">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-controller="UserManager">مدیریت کاربران</a>
+        </li>
+        <li class="breadcrumb-item active">ویرایش @Model.UserName</li>
+    </ol>
+</nav>
+<hr />
+<form asp-action="Edit" enctype="multipart/form-data">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <input asp-for="UserId" type="hidden" />
+                    <input asp-for="Avatar" value="@(string.IsNullOrWhiteSpace(Model.Avatar)?"empty":Model.Avatar)" type="hidden" />
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="form-floating form-floating-outline">
+                                <input asp-for="FirstName" class="form-control" />
+                                <label asp-for="FirstName"></label>
+                            </div>
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating form-floating-outline">
+                                <input asp-for="LastName" class="form-control" />
+                                <label asp-for="LastName"></label>
+                            </div>
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating form-floating-outline">
+                                <input asp-for="UserName" class="form-control" />
+                                <label asp-for="UserName"></label>
+                            </div>
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating form-floating-outline">
+                                <input asp-for="PhoneNumber" class="form-control" />
+                                <label asp-for="PhoneNumber"></label>
+                            </div>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating form-floating-outline">
+                                <input asp-for="Email" class="form-control" />
+                                <label asp-for="Email"></label>
+                            </div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+
+                        </div>
+                        <div class="col-md-6">
+                            <input asp-picker-for="BirthDay" />
+                            <span asp-validation-for="BirthDay" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <input asp-switch-for="IsActive" />
+                        </div>
+                        <div class="col-md-6">
+                            <radioButtonGroup-Enum asp-for="Gender" value="Model.Gender"></radioButtonGroup-Enum>
+                        </div>
+                    </div>
+                    <div class="pt-4">
+                        <button type="submit" class="btn btn-primary me-sm-3 me-1">ثبت</button>
+                        <button type="reset" class="btn btn-label-secondary">پاک کردن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-12 border-bottom text-center">
+                <div asp-img-for="UserAvatarFile" asp-img-value-for="Avatar"></div>
+            </div>
+        </div>
+
+    </div>
+</form>

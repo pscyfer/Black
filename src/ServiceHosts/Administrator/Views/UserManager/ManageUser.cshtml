@@ -1,0 +1,392 @@
+﻿@model ManagedUserViewModel
+@{
+    ViewData["Title"] = "مدریت کاربر";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-style1">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-controller="UserManager">مدیریت کاربران</a>
+        </li>
+        <li class="breadcrumb-item active">مدیریت کاربر </li>
+    </ol>
+</nav>
+<hr/>
+<div class="row">
+<div class="col">
+<h6 class="mt-4 secondary-font">مدیریت کاربر @Model.FirstName @Model.LastName</h6>
+<div class="card mb-3">
+<div class="card-header border-bottom primary-font">
+    <ul class="nav nav-tabs card-header-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link waves-effect active" data-bs-toggle="tab" data-bs-target="#form-tabs-personal" role="tab" aria-selected="true">
+                اطلاعات شخصی
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link waves-effect" data-bs-toggle="tab" data-bs-target="#form-tabs-account" role="tab" aria-selected="false" tabindex="-1">
+                مدیریت کاربر
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link waves-effect" data-bs-toggle="tab" data-bs-target="#form-tabs-social" role="tab" aria-selected="false" tabindex="-1">
+                شبکه های اجتماعی
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link waves-effect" data-bs-toggle="tab" data-bs-target="#form-tabs-rolePermission" role="tab" aria-selected="false" tabindex="-1">
+                نقش های کاربر
+            </button>
+        </li>
+        <span class="tab-slider" style="left: 1030.3px; width: 140.9px; bottom: 0px;"></span>
+    </ul>
+</div>
+<form asp-action="ManageUser">
+<div class="tab-content">
+
+<!-- Personal Info -->
+<div class="tab-pane fade active show" id="form-tabs-personal" role="tabpanel">
+
+    <input asp-for="Id" type="hidden"/>
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="form-floating form-floating-outline">
+                <input asp-for="FirstName" class="form-control"/>
+                <label asp-for="FirstName"></label>
+            </div>
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+
+            <div class="form-floating form-floating-outline">
+                <input asp-for="LastName" class="form-control"/>
+                <label asp-for="LastName"></label>
+            </div>
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating form-floating-outline">
+                <input asp-for="UserName" class="form-control"/>
+                <label asp-for="UserName"></label>
+            </div>
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating form-floating-outline">
+                <input asp-for="PhoneNumber" class="form-control"/>
+                <label asp-for="PhoneNumber"></label>
+            </div>
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating form-floating-outline">
+                <input asp-for="Email" class="form-control"/>
+                <label asp-for="Email"></label>
+            </div>
+            <span asp-validation-for="Email" class="text-danger"></span>
+
+        </div>
+        <div class="col-md-6">
+            <input asp-picker-for="BirthDay"/>
+            <span asp-validation-for="BirthDay" class="text-danger"></span>
+
+        </div>
+    </div>
+    <div class="row g-3">
+        <div class="col-md-6">
+            <input asp-switch-for="IsActive"/>
+        </div>
+        <div class="col-md-6">
+            <radioButtonGroup-Enum asp-for="Gender" value="Model.Gender"></radioButtonGroup-Enum>
+        </div>
+    </div>
+
+</div>
+<!-- Social Links -->
+<div class="tab-pane fade" id="form-tabs-social" role="tabpanel">
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="form-floating form-floating-outline">
+                <input asp-for="SocialNetwork.Telegram" formnovalidate="formnovalidate" class="form-control"/>
+                <label asp-for="SocialNetwork.Telegram"></label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating form-floating-outline">
+                <input asp-for="SocialNetwork.Instagram" formnovalidate="formnovalidate" class="form-control"/>
+                <label asp-for="SocialNetwork.Instagram"></label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating form-floating-outline">
+                <input asp-for="SocialNetwork.Discord" formnovalidate="formnovalidate" class="form-control"/>
+                <label asp-for="SocialNetwork.Discord"></label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating form-floating-outline">
+                <input asp-for="SocialNetwork.Email" formnovalidate="formnovalidate" class="form-control"/>
+                <label asp-for="SocialNetwork.Email"></label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating form-floating-outline">
+                <input asp-for="SocialNetwork.GitHub" formnovalidate="formnovalidate" class="form-control"/>
+                <label asp-for="SocialNetwork.GitHub"></label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating form-floating-outline">
+                <input asp-for="SocialNetwork.Linkdine" formnovalidate="formnovalidate" class="form-control"/>
+                <label asp-for="SocialNetwork.Linkdine"></label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating form-floating-outline">
+                <input asp-for="SocialNetwork.WhatsApp" formnovalidate="formnovalidate" class="form-control"/>
+                <label asp-for="SocialNetwork.WhatsApp"></label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating form-floating-outline">
+                <input asp-for="SocialNetwork.YouTube" formnovalidate="formnovalidate" class="form-control"/>
+                <label asp-for="SocialNetwork.YouTube"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Role Permission -->
+<div class="tab-pane fade" id="form-tabs-rolePermission" role="tabpanel">
+    <div class="row g-4">
+                            @foreach(var item in Model.RolePermission)
+                            {
+                                <div class="col-6 col-md-3">
+                                    <div class="form-check ">
+                                        <input class="form-check-input" name="SelectedRole" @if (item.Selected)
+                                        {
+                                            <text> checked="checked" </text>
+                                        } value="@item.Value" type="checkbox" id="@item.Value">
+                                        <label class="form-check-label" for="@item.Value">
+                                            @item.Text
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+</div>
+<!-- Account Details -->
+<div class="tab-pane fade" id="form-tabs-account" role="tabpanel">
+    <table class="table  table-bordered">
+        <thead>
+        <tr>
+            <td>
+                ویژگی ها
+            </td>
+            <td>
+                وضعیت
+            </td>
+            <td>
+                عملیات
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                وضعیت حساب کاربری
+            </td>
+            <td>
+                <button id="InActiveOrActiveUser" type="button" class="btn  w-100 btn-outline-@(Model.IsActive == true ? "success" : "danger") waves-effect">
+                    @(Model.IsActive == true ? "فعال" : "غیرفعال")
+                </button>
+            </td>
+            <td>
+                <button type="button" id="btnInActiveOrActiveUser" onclick="ConfigureSettings('@Model.Id','InActiveOrActiveUser')" class="btn w-100 btn-outline-@(Model.IsActive == true ? "danger" : "success") waves-effect">
+                    @(Model.IsActive == true ? "غیرفعال شود" : "فعال شود")
+
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                وضعیت ایمیل
+            </td>
+
+            <td>
+                <button id="ChangeEmailConfirmed" type="button" class="btn  w-100 btn-outline-@(Model.EmailConfirmed == true ? "success" : "danger") waves-effect">
+                    @(Model.EmailConfirmed == true ? "تایید شده" : "تایید نشده")
+                </button>
+            </td>
+            <td>
+                <button type="button" id="btnChangeEmailConfirmed" onclick="ConfigureSettings('@Model.Id','ChangeEmailConfirmed')" class="btn w-100 btn-outline-@(Model.EmailConfirmed == true ? "danger" : "success") waves-effect">
+                    @(Model.EmailConfirmed == true ? "تایید نشود" : "تایید کن")
+
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                وضعیت شماره موبایل
+            </td>
+            <td>
+                <button id="ChangePhoneNumberConfirmed" type="button" class="btn  w-100 btn-outline-@(Model.PhoneNumberConfirmed == true ? "success" : "danger") waves-effect">
+                    @(Model.PhoneNumberConfirmed == true ? "تایید شده" : "تایید نشده")
+                </button>
+            </td>
+            <td>
+                <button type="button" id="btnChangePhoneNumberConfirmed" onclick="ConfigureSettings('@Model.Id','ChangePhoneNumberConfirmed')" class="btn w-100 btn-outline-@(Model.PhoneNumberConfirmed == true ? "danger" : "success") waves-effect">
+                    @(Model.PhoneNumberConfirmed == true ? "تایید نشود" : "تایید کن")
+
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                قفل حساب کاربر
+            </td>
+            <td>
+                <button id="ChangeLockOutEnable" type="button" class="btn  w-100 btn-outline-@(Model.LockoutEnabled == true ? "success" : "danger") waves-effect">
+                    @(Model.LockoutEnabled == true ? "فعال" : "غیرفعال")
+                </button>
+            </td>
+            <td>
+                <button type="button" id="btnChangeLockOutEnable" onclick="ConfigureSettings('@Model.Id','ChangeLockOutEnable')" class="btn w-100 btn-outline-@(Model.LockoutEnabled == true ? "danger" : "success") waves-effect">
+                    @(Model.LockoutEnabled == true ? "غیرفعال شود" : "فعال شود")
+
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                اهرازهویت دو مرحله ای
+            </td>
+            <td>
+                <button id="ChangeTwoFactorEnabled" type="button" class="btn  w-100 btn-outline-@(Model.TwoFactorEnabled == true ? "success" : "danger") waves-effect">
+                    @(Model.TwoFactorEnabled == true ? "فعال" : "غیرفعال")
+                </button>
+            </td>
+            <td>
+                <button type="button" id="btnChangeTwoFactorEnabled" onclick="ConfigureSettings('@Model.Id','ChangeTwoFactorEnabled')" class="btn w-100 btn-outline-@(Model.TwoFactorEnabled == true ? "danger" : "success") waves-effect">
+                    @(Model.TwoFactorEnabled == true ? "غیرفعال شود" : "فعال شود")
+
+                </button>
+            </td>
+        </tr>
+        <tr>
+            @{
+                DateTimeOffset? LockoutEnd = null;
+                @if (Model.LockoutEnd.HasValue)
+                {
+                    LockoutEnd = Model.LockoutEnd.Value.ToLocalTime();
+                }
+            }
+            <td>وضعیت قفل حساب کاربر</td>
+            <td>
+                @if (Model.LockoutEnd.HasValue)
+                {
+                    <button id="LockOrUnLockUserAccount" type="button" class="btn  w-100 btn-outline-@(LockoutEnd > DateTime.Now ? "success" : "danger") waves-effect">
+                        @(LockoutEnd > DateTime.Now ? "قفل شده" : "قفل نشده")
+                    </button>
+                }
+                else
+                {
+                    <button id="LockOrUnLockUserAccount" type="button" class="btn  w-100 btn-outline-success waves-effect">
+                        قفل نشده
+                    </button>
+                }
+
+            </td>
+            <td>
+                @if (Model.LockoutEnd.HasValue)
+                {
+                    <button type="button" id="btnLockOrUnLockUserAccount" onclick="ConfigureSettings('@Model.Id','LockOrUnLockUserAccount')" class="btn w-100 btn-outline-@(LockoutEnd > DateTime.Now ? "danger" : "success") waves-effect">
+                        @(LockoutEnd > DateTime.Now ? "غیرفعال شود" : "فعال شود")
+
+                    </button>
+                }
+
+                else
+                {
+                    <button id="btnLockOrUnLockUserAccount" onclick="ConfigureSettings('@Model.Id','LockOrUnLockUserAccount')" class="btn w-100 btn-outline-@(LockoutEnd > DateTime.Now ? "danger" : "success") waves-effect">
+                        قفل شود
+
+                    </button>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                تعداد تلاش های ناموفق
+            </td>
+            <td>
+                @Model.AccessFailedCount
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>زمان خاتمه قفل حساب </td>
+            <td>
+                @if (Model.LockoutEnd.HasValue)
+                {
+                    var lockoutEnd = Model.LockoutEnd.Value.ToLocalTime();
+                    @Common.Application.DateUtil.DateConvertor.ToPersianDate(lockoutEnd, "ds dd ms Y HH:mm:ss")
+                }
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+<div class="p-4">
+    <button type="submit" class="btn btn-primary me-sm-3 me-1">ثبت</button>
+    <button type="reset" class="btn btn-label-secondary">پاک کردن</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+@section Scripts
+{
+    <script>
+        function ConfigureSettings(id, action) {
+            $.ajax({
+                url: "/UserManager/" + action + "/" + id,
+                beforeSend: function () {  /*  RemoveLoading();*/
+                },
+                complete: function () {
+                    ShowSweetSuccessAlert("عملیات با موفقیت انجام شد");
+                },
+                type: "get",
+                data: {},
+            }).done(function (result) {
+                if (result == "فعال" || result == "تایید شده" || result == "قفل نشده") {
+                    $("#" + action).removeClass("btn-outline-danger").addClass("btn-outline-success");
+                    $("#btn" + action).removeClass("btn-outline-suceess").addClass("btn-outline-danger");
+                    if (result == "فعال")
+                        $("#btn" + action).html("غیرفعال شود");
+                    else if (result == "قفل نشده")
+                        $("#btn" + action).html("قفل شود");
+                    else
+                        $("#btn" + action).html("تایید نشود");
+                } else {
+                    $("#" + action).removeClass("btn-outline-success").addClass("btn-outline-danger");
+                    $("#btn" + action).removeClass("btn-outline-danger").addClass("btn-outline-success");
+                    if (result == "غیرفعال")
+                        $("#btn" + action).html("فعال شود");
+                    else if (result == "قفل شده")
+                        $("#btn" + action).html("قفل نشود");
+                    else
+                        $("#btn" + action).html("تایید شود");
+                }
+                $("#" + action).html(result);
+                RemoveLoading();
+            });
+        }
+    </script>
+}

@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Dto\Shared\**" />
+    <EmbeddedResource Remove="Dto\Shared\**" />
+    <None Remove="Dto\Shared\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Identity.Data\Identity.Data.csproj" />
+    <ProjectReference Include="..\Identity.ViewModels\Identity.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dto\Claim\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Validations\Role\" />
+  </ItemGroup>
+
+</Project>

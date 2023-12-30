@@ -1,0 +1,91 @@
+﻿@model Common.AspNetCore.Notification.NotificationDto
+@if (Model is not null & !string.IsNullOrWhiteSpace(Model.Title))
+{
+    <script>
+        var msg = @(Model != null ? Html.Raw(Model) : Html.Raw("undefined"));
+        debugger;
+        //console.log(msg)
+        if (msg) {
+
+            if (msg.Interval) {
+                console.log(msg.Interval)
+                try {
+                    Swal.fire({
+                        title: msg.Title,
+                        text: msg.Message,
+                        icon: msg.Icon,
+                        buttons: false,
+                        timer: 5000
+                    });
+                } catch (e) {
+                    Swal.fire({
+                        title: msg.Title,
+                        text: msg.Message,
+                        icon: msg.icon,
+                        buttons: false,
+                        timer: 5000
+                    });
+                }
+            }
+            else if (msg.IsQuestion) {
+                try {
+                    Swal.fire({
+                        title: msg.Title,
+                        text: msg.Message,
+                        icon: msg.Icon,
+                        button: "! فهــمیدم ",
+                    })
+                        .then((value) => {
+                            //console.log(msg.icon2);
+                            Swal.fire({
+                                title: msg.Iitle,
+                                text: msg.MessageQuestion,
+                                icon: msg.Icon2,
+                                button: "! فهــمیدم ",
+                            });
+                        });
+                } catch (e) {
+                    Swal.fire({
+                        title: msg.Title,
+                        text: msg.Message,
+                        icon: msg.icon,
+                        button: "! فهــمیدم ",
+                    })
+                        .then((value) => {
+                            //console.log(msg.icon2);
+                            Swal.fire({
+                                title: msg.Title,
+                                text: msg.MessageQuestion,
+                                icon: msg.Icon2,
+                                button: "! فهــمیدم ",
+                            });
+                        });
+                }
+
+            }
+            else {
+                try {
+                    Swal.fire({
+                        title: msg.Title,
+                        text: msg.Message,
+                        icon: msg.Icon,
+                        customClass: { confirmButton: "btn btn-primary" },
+                        confirmButtonText: "باشه",
+                        buttonsStyling: !1,
+                    });
+                } catch (e) {
+                    Swal.fire({
+                        title: msg.Title,
+                        text: msg.Message,
+                        icon: msg.Icon,
+                        customClass: { confirmButton: "btn btn-primary" },
+                        confirmButtonText: "باشه",
+                        buttonsStyling: !1,
+                    });
+                }
+
+            }
+
+        }
+    </script>
+}

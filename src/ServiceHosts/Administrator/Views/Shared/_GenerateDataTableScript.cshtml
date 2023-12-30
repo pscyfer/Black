@@ -1,0 +1,349 @@
+﻿@using Common.AspNetCore.DataTableConfig
+@model DataTableModel
+@inject IHttpContextAccessor _httpContextAccessor
+@functions
+{
+    string GetUrl(DataUrl dataUrl)
+    {
+        return !string.IsNullOrEmpty(dataUrl?.ActionName) && !string.IsNullOrEmpty(dataUrl.ControllerName)
+            ? Url.Action(dataUrl.ActionName, dataUrl.ControllerName, dataUrl.RouteValues)
+            : !string.IsNullOrEmpty(dataUrl.Url)
+            ? $"{(dataUrl.Url.StartsWith("~/", StringComparison.Ordinal) ? Url.Content(dataUrl.Url) : dataUrl.Url).TrimEnd('/')}" + (!dataUrl.TrimEnd ? "/" : "")
+            : string.Empty;
+    }
+    string GetUrlAndSetQueryString(DataUrl dataUrl)
+    {
+        return !string.IsNullOrEmpty(dataUrl?.ActionName) && !string.IsNullOrEmpty(dataUrl.ControllerName)
+            ? Url.Action(dataUrl.ActionName, dataUrl.ControllerName, dataUrl.RouteValues)
+            : !string.IsNullOrEmpty(dataUrl.Url)
+            ? $"{(dataUrl.Url.StartsWith("~/", StringComparison.Ordinal) ? Url.Content(dataUrl.Url) : dataUrl.Url).TrimEnd('/')}" + (!dataUrl.TrimEnd ? "" : "")
+            : string.Empty;
+    }
+    string GetAjaxRowStringParamters(DataUrl dataUrl, string value)
+    {
+        string perfixURl = GetUrl(dataUrl) + "$" + "{row." + value + "}";
+        return perfixURl; ;
+    }
+    string UrlGenerating(DataUrl dataUrl,string value)
+    {
+        string perfixURl = GetUrl(dataUrl)  + "$" + "{row." + value + "}"+"/"+"paramValue";
+        return perfixURl; 
+    }
+
+    IQueryCollection GetQueryParameters() => _httpContextAccessor?.HttpContext?.Request?.Query;
+
+}
+<script>
+
+    $(document).ready(function () {
+        if($('.select2').length>0){
+               $('.select2').select2({
+            placeholder: 'لطفا یکی  را انتخاب کنید'
+        });
+        }
+    
+
+        let table = $("#MGT_@Model.Name").DataTable({
+            "lengthMenu": [10, 20, 50, 100],
+            "pagingType": "full_numbers",
+            "language": {
+                "sProcessing": "لطفا منتطر بمانید ...",
+                "sZeroRecords": "دیتایی برای نمایش وجود ندارد",
+                "infoEmpty": "دیتایی برای نمایش وجود ندارد",
+                "emptyTable": "دیتایی برای نمایش وجود ندارد",
+                "info": "نمایش _START_ از _END_ از _TOTAL_ رکورد",
+                "lengthMenu": "نمایش _MENU_ رکورد",
+                "infoFiltered": " - فیلتر از بین  _MAX_ رکورد",
+                "paginate": {
+                    "last": "اخرین",
+                    "first": "اولین",
+                    "next": "بعدی",
+                    "previous": "قبلی"
+                },
+                search: "جستوجو :  ",
+                rchPlaceholder: "جستوجو"
+            },
+            "processing": true,
+            "serverSide": true,
+            "filter": true,
+            "ajax": {
+                "url": "@Html.Raw(GetUrl(Model.UrlRead))",
+                "type": "POST",
+                "datatype": "json",
+                "data": function (paramter) {
+
+                    @foreach (var item in Model.InputHeaders)
+                      {
+                                     <text>
+                                         paramter.@(item.ParameterName) = $("#@(item.Id)").val();
+                                  </text>
+                      }
+                  
+                  @foreach (var item in  GetQueryParameters())
+                              {
+                               <text>
+                            paramter.@(item.Key) = @item.Value;
+                                  </text>
+                                 }
+
+                }
+            },
+            "columns": [
+                @for (int i = 0; i < Model.ColumnCollection.Count; i++)
+    {
+        switch (Model.ColumnCollection[i].Render)
+        {
+            case RenderDefault:
+                {
+                    <text>
+                                                {
+                                                    "data": "@Model.ColumnCollection[i].Data",
+                                                    "name": "@Model.ColumnCollection[i].Name",
+                                                    "width": "@Model.ColumnCollection[i].Width",
+                                                    "autoWidth": @Model.ColumnCollection[i].AutoWidth.ToString().ToLower(),
+                                                    title: "@Model.ColumnCollection[i].Title",
+                                                    orderable: @Model.ColumnCollection[i].Orderable.ToString().ToLower(),
+                                                    "searchable": @Model.ColumnCollection[i].Searchable.ToString().ToLower(),
+                                                    "visible": @Model.ColumnCollection[i].Visible.ToString().ToLower()
+
+                                                },
+
+                    </text>
+                }
+                break;
+            case RenderBoolean renderBoolean:
+                {
+                    <text>
+                                                {
+                                                    "data": "@Model.ColumnCollection[i].Data",
+                                                    "width": "@Model.ColumnCollection[i].Width",
+                                                    "name": "@Model.ColumnCollection[i].Name",
+                                                    "autoWidth": @Model.ColumnCollection[i].AutoWidth.ToString().ToLower(),
+                                                    title: "@Model.ColumnCollection[i].Title",
+                                                    orderable: @Model.ColumnCollection[i].Orderable.ToString().ToLower(),
+                                                    "searchable": @Model.ColumnCollection[i].Searchable.ToString().ToLower(),
+                                                    "visible": @Model.ColumnCollection[i].Visible.ToString().ToLower(),
+                                                    "render": function (data, type, row) {
+                                                        return row.@Model.ColumnCollection[i].Data == true ? '@Html.Raw(renderBoolean.TrueResult)' : '@Html.Raw(renderBoolean.FalseResult)';
+                                                    }
+
+                                                },
+
+                    </text>
+                }
+                break;
+            case RenderLink link:
+                {
+                    <text>
+                                                {
+                                                    "data": "@Model.ColumnCollection[i].Data",
+                                                    "name": "@Model.ColumnCollection[i].Name",
+                                                    "width": "@Model.ColumnCollection[i].Width",
+                                                    "autoWidth": @Model.ColumnCollection[i].AutoWidth.ToString().ToLower(),
+                                                    title: "@Model.ColumnCollection[i].Title",
+                                                    orderable: @Model.ColumnCollection[i].Orderable.ToString().ToLower(),
+                                                    "searchable": @Model.ColumnCollection[i].Searchable.ToString().ToLower(),
+                                                    "visible": @Model.ColumnCollection[i].Visible.ToString().ToLower(),
+                                                    "render": function (data, type, row) {
+                                                                        return `<a class="@link.ClassNames" href='@GetUrlAndSetQueryString(link.Url)${row.@Model.ColumnCollection[i].Data}' title="@link.Title" target="@link.Target">@link.Title</a>`;
+                                                    }
+
+                                                },
+
+                    </text>
+                }
+                break;
+            case RenderPicture picture:
+                {
+                    <text>
+                                            {
+                                                "data": "@Model.ColumnCollection[i].Data",
+                                                "name": "@Model.ColumnCollection[i].Name",
+                                                "width": "@Model.ColumnCollection[i].Width",
+                                                "autoWidth": @Model.ColumnCollection[i].AutoWidth.ToString().ToLower(),
+                                                title: "@Model.ColumnCollection[i].Title",
+                                                orderable: @Model.ColumnCollection[i].Orderable.ToString().ToLower(),
+                                                "searchable": @Model.ColumnCollection[i].Searchable.ToString().ToLower(),
+                                                "visible": @Model.ColumnCollection[i].Visible.ToString().ToLower(),
+                                                "render": function (data, type, row)
+                                                {
+                                                    return `<div ><img loading="lazy" class="rounded-circle" src="@picture.BaseUrl${row.@Model.ColumnCollection[i].Data}" width="@picture.Width" height="@picture.Height" alt="${ row.@Model.ColumnCollection[i].Data}" /></div>`;
+                                                }
+                                            },
+
+                    </text>
+                }
+                break;
+            case RenderButtonRemove remove:
+                {
+                    var ajaxRemove = $"""<button type="button" class="btn btn-outline-danger me-1 {remove.ClassName}" data-toggle="ajax-modal" data-url="{GetAjaxRowStringParamters(remove.DataUrl, Model.ColumnCollection[i].Data)}":"">{remove.DisplayName}</button>""";
+                    var defaulrRemove = $"""<a href="{GetAjaxRowStringParamters(remove.DataUrl, Model.ColumnCollection[i].Data)}" class="btn btn-outline-danger me-1 {remove.ClassName}">{remove.DisplayName}</a>""";
+                    var result = string.Concat(remove.IsAjaxEdit ? ajaxRemove : defaulrRemove);
+                    <text>
+                                        {
+
+                                            "data": "@Model.ColumnCollection[i].Data",
+                                            "name": "@Model.ColumnCollection[i].Name",
+                                            "width": "@Model.ColumnCollection[i].Width",
+                                            "autoWidth": @Model.ColumnCollection[i].AutoWidth.ToString().ToLower(),
+                                            title: "@Model.ColumnCollection[i].Title",
+                                            orderable: @Model.ColumnCollection[i].Orderable.ToString().ToLower(),
+                                            "searchable": @Model.ColumnCollection[i].Searchable.ToString().ToLower(),
+                                            "visible": @Model.ColumnCollection[i].Visible.ToString().ToLower(),
+                                            "render": function (data, type, row) {
+                                                               return `@Html.Raw(result)`;
+                                                                    }
+                                                                },
+
+                    </text>
+                }
+                break;
+            case RenderButtonEdit edit:
+                {
+                    var ajaxEdit = $"""<button type="button" class="btn btn-outline-danger me-1 {edit.ClassName}" data-toggle="ajax-modal" data-url="{GetAjaxRowStringParamters(edit.DataUrl, Model.ColumnCollection[i].Data)}":"">{edit.DisplayName}</button>""";
+                    var defaulrEdit = $"""<a href="{GetAjaxRowStringParamters(edit.DataUrl, Model.ColumnCollection[i].Data)}" class="btn btn-outline-danger me-1 {edit.ClassName}">{edit.DisplayName}</a>""";
+                    var result = string.Concat(edit.IsAjaxEdit ? ajaxEdit : defaulrEdit);
+                    <text>
+                                        {
+                                            "data": "@Model.ColumnCollection[i].Data",
+                                            "name": "@Model.ColumnCollection[i].Name",
+                                            "width": "@Model.ColumnCollection[i].Width",
+                                            "autoWidth": @Model.ColumnCollection[i].AutoWidth.ToString().ToLower(),
+                                            title: "@Model.ColumnCollection[i].Title",
+                                            orderable: @Model.ColumnCollection[i].Orderable.ToString().ToLower(),
+                                            "searchable": @Model.ColumnCollection[i].Searchable.ToString().ToLower(),
+                                            "visible": @Model.ColumnCollection[i].Visible.ToString().ToLower(),
+                                            "render": function (data, type, row) {
+                                                                     return `@Html.Raw(result)`;
+                                                                    }
+                                                                },
+
+                    </text>
+                }
+                break;
+            case RenderButtonCustome custome:
+                {
+                    string result = "";
+                    string fielName = custome.FieldName.ToString();
+                  
+                    if(custome.IsAjaxEdit)
+                      result = $"""<button type="button" class="{custome.ClassName}" data-toggle="ajax-modal" data-url="{UrlGenerating(custome.DataUrl,Model.ColumnCollection[i].Data)}">displayName</button>""";
+                    else
+                       result = $"""<a href="{UrlGenerating(custome.DataUrl,Model.ColumnCollection[i].Data)}" class="{custome.ClassName}">displayName</a>""";
+                    <text>
+                                                {
+                                                    "data": "@Model.ColumnCollection[i].Data",
+                                                    "name": "@Model.ColumnCollection[i].Name",
+                                                    "width": "@Model.ColumnCollection[i].Width",
+                                                    "autoWidth": @Model.ColumnCollection[i].AutoWidth.ToString().ToLower(),
+                                                    title: "@Model.ColumnCollection[i].Title",
+                                                    orderable: @Model.ColumnCollection[i].Orderable.ToString().ToLower(),
+                                                    "searchable": @Model.ColumnCollection[i].Searchable.ToString().ToLower(),
+                                                    "visible": @Model.ColumnCollection[i].Visible.ToString().ToLower(),
+                                                    "render": function (data, type, row) {
+                                                        let valueOfField=row.@fielName;
+                                                        let result=`@Html.Raw(result)`;
+                                                        let eqaulObjectType =`@Html.Raw(custome.IfEqualResultContext.FirstOrDefault().Key.ToString().ToLowerInvariant())`;
+                                                        let eqaulResultContent =`@Html.Raw(custome.IfEqualResultContext.FirstOrDefault().Value.ToString().ToLowerInvariant())`;
+                                                        let notEqaulObjectType =`@Html.Raw( custome.IfNotEqualResultContext.FirstOrDefault().Key.ToString().ToLowerInvariant())`;
+                                                        let notEqaulResultContent =`@Html.Raw(custome.IfNotEqualResultContext.FirstOrDefault().Value.ToString().ToLowerInvariant())`; 
+                                                                       if(valueOfField&&eqaulObjectType){
+                                                                         result=  result.replace("displayName",eqaulResultContent).replace("paramValue",notEqaulObjectType);
+                                                                       }
+                                                                       else{
+                                                                         result=  result.replace("displayName",notEqaulResultContent).replace("paramValue",eqaulObjectType);
+                                                                       }
+
+                                                                         return result;
+
+                                                    }
+
+                                                },
+
+                    </text>
+
+                }
+                break;
+            case RenderButtonDetails details:
+                {
+                    var ajaxDetails = $"""<button type="button" class="btn btn-outline-danger me-1 {details.ClassName}" data-toggle="ajax-modal" data-url="{GetAjaxRowStringParamters(details.DataUrl, Model.ColumnCollection[i].Data)}":"">{details.DisplayName}</button>""";
+                    var defaulrDetails = $"""<a href="{GetAjaxRowStringParamters(details.DataUrl, Model.ColumnCollection[i].Data)}" class="btn btn-outline-danger me-1 {details.ClassName}">{details.DisplayName}</a>""";
+                    var result = string.Concat(details.IsAjaxEdit ? ajaxDetails : defaulrDetails);
+
+                    <text>
+                                        {
+                                            "data": "@Model.ColumnCollection[i].Data",
+                                            "name": "@Model.ColumnCollection[i].Name",
+                                            "width": "@Model.ColumnCollection[i].Width",
+                                            "autoWidth": @Model.ColumnCollection[i].AutoWidth.ToString().ToLower(),
+                                            title: "@Model.ColumnCollection[i].Title",
+                                            orderable: @Model.ColumnCollection[i].Orderable.ToString().ToLower(),
+                                            "searchable": @Model.ColumnCollection[i].Searchable.ToString().ToLower(),
+                                            "visible": @Model.ColumnCollection[i].Visible.ToString().ToLower(),
+                                            "render": function (data, type, row) {
+                                                return `@Html.Raw(result)`;
+                                                                    }
+                                                                },
+
+                    </text>
+                }
+                break;
+            case RenderButtonOperation operations:
+                {
+                    string ajaxCustome = string.Empty;
+                    string ajaxRemove = string.Empty;
+                    string ajaxEdit = string.Empty;
+                    string ajaxDetials = string.Empty;
+                    if(operations.Remove is not null)
+                        ajaxRemove = $"""<button type="button" class="btn btn-outline-danger me-1 {operations.ClassName}" data-toggle="ajax-modal" data-url="{GetAjaxRowStringParamters(operations.Remove.DataUrl, Model.ColumnCollection[i].Data)}":"">{operations.Remove.DisplayName}</button>""";
+                    if(operations.Custome is not null)
+                        ajaxCustome = $"""<button type="button" class="btn btn-outline-success me-1 {operations.ClassName}" data-toggle="ajax-modal" data-url="{GetAjaxRowStringParamters(operations.Custome.DataUrl, Model.ColumnCollection[i].Data)}":"">{operations.Custome.DisplayName}</button>""";
+                    if(operations.Edit is not null)
+                        ajaxEdit = $"""<button type="button" class="btn btn-outline-primary me-1 {operations.ClassName}" data-toggle="ajax-modal" data-url="{GetAjaxRowStringParamters(operations.Edit.DataUrl, Model.ColumnCollection[i].Data)}":"">{operations.Edit.DisplayName}</button>""";
+                    if(operations.Details is not null)
+                        ajaxDetials = $"""<button type="button" class="btn btn-outline-info me-1  {operations.ClassName}" data-toggle="ajax-modal" data-url="{GetAjaxRowStringParamters(operations.Details.DataUrl, Model.ColumnCollection[i].Data)}":"">{operations.Details.DisplayName}</button>""";
+                    string defaultCustome = string.Empty;
+                    string defaulrRemove = string.Empty;
+                    string defaulrEdit = string.Empty;
+                    string defaulrDetails = string.Empty;
+                    if(operations.Custome is not null)
+                        defaultCustome = $"""<a href="{GetAjaxRowStringParamters(operations.Custome.DataUrl, Model.ColumnCollection[i].Data)}" class="btn btn-outline-success me-1 {operations.ClassName}">{operations.Custome.DisplayName}</a>""";
+                    if(operations.Remove is not null)
+                        defaulrRemove = $"""<a href="{GetAjaxRowStringParamters(operations.Remove.DataUrl, Model.ColumnCollection[i].Data)}" class="btn btn-outline-danger me-1 {operations.ClassName}">{operations.Remove.DisplayName}</a>""";
+                    if(operations.Edit is not null)
+                        defaulrEdit = $"""<a href="{GetAjaxRowStringParamters(operations.Edit.DataUrl, Model.ColumnCollection[i].Data)}" class="btn btn-outline-primary me-1 {operations.ClassName}">{operations.Edit.DisplayName}</a>""";
+                    if(operations.Details is not null)
+                        defaulrDetails = $"""<a href="{GetAjaxRowStringParamters(operations.Details.DataUrl, Model.ColumnCollection[i].Data)}" class="btn btn-outline-info me-1 {operations.ClassName}">{operations.Details.DisplayName}</a>""";
+                    var result = string.Concat(operations.Remove != null ?(operations.Remove.IsAjaxEdit ? ajaxRemove : defaulrRemove):string.Empty, operations.Edit!=null? (operations.Edit.IsAjaxEdit ? ajaxEdit : defaulrEdit):string.Empty,  operations.Details!=null?(operations.Details.IsAjaxEdit? ajaxDetials : defaulrDetails) :string.Empty, (operations.Custome is not null ?operations.Custome.IsAjaxEdit ? ajaxCustome : defaultCustome:""));
+
+            <text>
+                   {
+                        "data": "@Model.ColumnCollection[i].Data",
+                    "name": "@Model.ColumnCollection[i].Name",
+                    "width": "@Model.ColumnCollection[i].Width",
+                    "autoWidth": @Model.ColumnCollection[i].AutoWidth.ToString().ToLower(),
+                    title: "@Model.ColumnCollection[i].Title",
+                    orderable: @Model.ColumnCollection[i].Orderable.ToString().ToLower(),
+                    "searchable": @Model.ColumnCollection[i].Searchable.ToString().ToLower(),
+                    "visible": @Model.ColumnCollection[i].Visible.ToString().ToLower(),
+                    "render": function(data, type, row) {
+                            return `@Html.Raw(result)`;
+                        }
+                    },
+
+            </text>
+           }
+                break;
+            default:
+                break;
+        }
+    }
+
+            ]
+        });
+        $("@Model.GetInputHeaderIds()").bind("keyup change", function () {
+            table.draw();
+        });
+    });
+
+</script>
