@@ -1,0 +1,21 @@
+﻿<!--Menu Activation-->
+<partial name="_MenuActivations" />
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+<script src="~/assets/vendor/libs/popper/popper.js"></script>
+<script src="~/assets/vendor/js/bootstrap.js"></script>
+<script src="~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="~/assets/vendor/libs/typeahead-js/typeahead.js"></script>
+<script src="~/assets/vendor/js/menu.js" asp-append-version="true"></script>
+<script src="~/assets/vendor/libs/jdate/jdate.js" asp-append-version="true"></script>
+<script src="~/assets/vendor/libs/flatpickr/flatpickr-jdate.js" asp-append-version="true"></script>
+<script src="~/assets/vendor/libs/flatpickr/fa-jdate.js" asp-append-version="true"></script>
+<!-- endbuild -->
+<!-- Vendors JS -->
+<!-- Main JS -->
+<script src="~/assets/js/main.js"></script>
+<script src="~/commons/ajaxmodal.js" asp-append-version="true"></script>
+<script src="~/assets/vendor/libs/sweetalert2/sweetalert2.js" asp-append-version="true"></script>
+<script src="~/commons/bootstrapfileinput/file-upload.js" asp-append-version="true"></script>
+@await Component.InvokeAsync("NotificationSeewAlert")
+@await Html.PartialAsync("_DataTableScript")

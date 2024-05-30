@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.AspNetCore\Common.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\Modules\Identity\Identity.Core\Identity.Core.csproj" />
+    <ProjectReference Include="..\..\Modules\Jobs\JobsModule.Core\JobsModule.Core.csproj" />
+    <ProjectReference Include="..\..\Modules\Monitoring\Monitoring\Monitoring.csproj" />
+    <ProjectReference Include="..\..\Modules\Support\TicketModule.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\UserManager\_RenderCreateUser.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\TicketManager\_RenderCloseTicket.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\UserManager\_RenderCreateUser.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Modules\TicketModule\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\TicketManager\_RenderCloseTicket.cshtml" />
+  </ItemGroup>
+
+</Project>

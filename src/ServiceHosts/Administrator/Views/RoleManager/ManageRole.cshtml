@@ -1,0 +1,65 @@
+﻿@model Identity.ViewModels.RoleManager.GetRoleWithPermissionsViewModel
+@{
+    ViewData["Title"] = "مدیریت نقش";
+}
+<form asp-action="ManageRole" asp-antiforgery="true" class="row g-3 fv-plugins-bootstrap5 fv-plugins-framework">
+    <input type="hidden" asp-for="RoleId"/>
+    <div class="col-12 mb-4 fv-plugins-icon-container">
+        <div class="form-floating form-floating-outline">
+            <input class="form-control" asp-for="Name">
+            <label asp-for="Name"></label>
+        </div>
+        <span asp-validation-for="Name" class="fv-plugins-message-container invalid-feedback"></span>
+    </div>
+    <div class="col-12 mb-4 fv-plugins-icon-container">
+        <div class="form-floating form-floating-outline">
+            <textarea style="height: 140px;" asp-for="Desciption" class="form-control"></textarea>
+            <label asp-for="Desciption"></label>
+        </div>
+        <span asp-validation-for="Desciption" class="fv-plugins-message-container invalid-feedback"></span>
+    </div>
+    <div class="col-12">
+        <h5>مجوزهای نقش</h5>
+        <!-- Permission list -->
+        <div class="row mb-4">
+            <div class="col-12 col-md-3">
+                دسترسی مدیریت
+                <i class="mdi mdi-information-outline" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="دسترسی کامل به سیستم را اجازه می&zwnj;دهد" data-bs-original-title="دسترسی کامل به سیستم را اجازه می&zwnj;دهد"></i>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="selectAll">
+                    <label class="form-check-label" for="selectAll">
+                        انتخاب همه
+                    </label>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mb-5">
+            @foreach (var item in Model.Permissions)
+            {
+                <div class="col-6 col-md-3">
+                    <div class="form-check ">
+                        <input class="form-check-input" name="PermissionNames" @if (item.Selected) { <text> checked="checked" </text> } value="@item.Value" type="checkbox" id="@item.Value">
+                        <label class="form-check-label" for="@item.Value">
+                            @item.Text
+                        </label>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <!-- Permission table -->
+    </div>
+    <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light">
+            ثبت
+        </button>
+        <button type="reset" class="btn btn-outline-secondary waves-effect" data-bs-dismiss="modal" aria-label="Close">
+            منصرف
+        </button>
+    </div>
+    <div></div>
+</form>

@@ -1,0 +1,78 @@
+﻿@model RequestCreateUserViewModel
+<!-- Add User Modal -->
+<div class="modal fade"
+     id="addUserModal"
+     tabindex="-1"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered ">
+        <div class="modal-content p-3 p-md-5">
+            <button type="button"
+                    class="btn-close btn-pinned"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            <div class="modal-body p-md-0">
+                <div class="text-center mb-4">
+                    <h3 class="role-title mb-2 pb-0">افزودن کاربر جدید</h3>
+                </div>
+
+                <form asp-action="Create" method="post" asp-antiforgery="true">
+                    @if (ViewData.ModelState.IsValid.ToString() == "False")
+                    {
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4"></div>
+                    }
+                    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+                  <div class="row">
+                        <div class="col-12 mb-4">
+                            <div class="form-floating form-floating-outline">
+                                <input asp-for="UserName" class="form-control" />
+                                <label asp-for="UserName"></label>
+                            </div>
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-floating form-floating-outline">
+                                <input asp-for="FirstName" class="form-control" />
+                                <label asp-for="FirstName"></label>
+                            </div>
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-floating form-floating-outline">
+                                <input asp-for="LastName" class="form-control" />
+                                <label asp-for="LastName"></label>
+                            </div>
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <div class="col-12 col-md-6 mt-4">
+                            <div class="form-floating form-floating-outline">
+                                <input asp-for="Password" class="form-control" />
+                                <label asp-for="Password"></label>
+                            </div>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="col-12 col-md-6 mt-4">
+                            <div class="form-floating form-floating-outline">
+                                <input asp-for="ConfirmPassword" class="form-control" />
+                                <label asp-for="ConfirmPassword"></label>
+                            </div>
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <div class="col-12 mt-5 text-center">
+                            <button type="button" data-save="modal"
+                                    class="btn btn-primary me-sm-3 me-1">
+                                ثبت
+                            </button>
+                            <button type="reset"
+                                    class="btn btn-outline-secondary"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                منصرف
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

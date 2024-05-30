@@ -1,0 +1,42 @@
+﻿@model GetMonitorNamebyIdViewModel
+
+<div class="modal fade">
+    <div class="modal-dialog modal-simple  modal-dialog-centered">
+        <div class="modal-content p-3 p-md-5">
+            <div class="modal-body p-md-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                @if (Model == null)
+                {
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                }
+                else
+                {
+                    <h4>آیا شما می خواهید @Model.Name را به حالت معلق در بیاورید ؟</h4>
+                    <form asp-action="ConfirmIsPauseMonitor" method="post" asp-antiforgery="true">
+                        <input name="IsValid" type="hidden" value="True" />
+                        <input asp-for="Name" type="hidden" />
+                        <input asp-for="IsPausedValue" type="hidden" />
+                        <input name="IsRefreshLoaction" type="hidden" value="True" />
+                        <input type="hidden" asp-for="Id" />
+                    </form>
+                }
+            </div>
+            <div class="modal-footer">
+                @if (Model != null)
+                {
+                    <button type="button" class="btn btn-danger" data-save="modal"
+                            data-bs-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">بله</span>
+                    </button>
+                }
+
+                <button type="button" class="btn btn-primary ml-1"
+                        data-bs-dismiss="modal">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block"> @(Model != null ? "خیر" : "بستن")</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

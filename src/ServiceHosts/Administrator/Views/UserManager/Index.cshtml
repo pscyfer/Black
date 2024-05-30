@@ -1,0 +1,98 @@
+﻿@model UserManagerIndexVm
+@{
+    ViewData["Title"] = "مدیریت کاربران";
+}
+<link href="~/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" asp-append-version="true" rel="stylesheet" />
+<link href="~/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" asp-append-version="true" rel="stylesheet" />
+<link href="~/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css" rel="stylesheet" asp-append-version="true" />
+
+
+<div class="row g-4 mb-4">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="avatar">
+                        <div class="avatar-initial bg-label-success rounded">
+                            <div class="mdi mdi-account-outline mdi-24px"></div>
+                        </div>
+                    </div>
+                    <div class="ms-3">
+                        <div class="d-flex align-items-center">
+                            <h5 class="mb-0">@Model.AllUserCount.ToString("#,0")</h5>
+                        </div>
+                        <small class="text-muted">کاربران</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="avatar">
+                        <div class="avatar-initial bg-label-primary rounded">
+                            <div class="mdi mdi-account-outline mdi-24px"></div>
+                        </div>
+                    </div>
+                    <div class="ms-3">
+                        <div class="d-flex align-items-center">
+                            <h5 class="mb-0">@Model.UserActiveCount.ToString("#,0")</h5>
+                        </div>
+                        <small class="text-muted">کاربران فعال</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="avatar">
+                        <div class="avatar-initial bg-label-danger rounded">
+                            <div class="mdi mdi-account-outline mdi-24px"></div>
+                        </div>
+                    </div>
+                    <div class="ms-3">
+                        <div class="d-flex align-items-center">
+                            <h5 class="mb-0">@Model.UserNotActiveCount.ToString("#,0")</h5>
+                        </div>
+                        <small class="text-muted">کاربران غیرفعال</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="avatar">
+                        <div class="avatar-initial bg-label-warning rounded">
+                            <div class="mdi mdi-account-outline mdi-24px"></div>
+                        </div>
+                    </div>
+                    <div class="ms-3">
+                        <div class="d-flex align-items-center">
+                            <h5 class="mb-0">@Model.UserNotConfirmAccount.ToString("#,0")</h5>
+                        </div>
+                        <small class="text-muted">کاربران تایید نشده</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Users List Table -->
+<div class="card">
+    <div class="card-header border-bottom">
+        <h5 class="card-title">مدیریت کاربران</h5>
+       
+    </div>
+    <div class="card-datatable table-responsive">
+        <Dt-Table TableModel="@Model.DataTableUser"></Dt-Table>
+    </div>
+</div>
+<script src="~/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>

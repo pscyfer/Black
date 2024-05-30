@@ -1,0 +1,109 @@
+﻿@model Monitoring.Abstractions.ViewModels.CreateHttpMonitorViewModel
+@{
+    ViewData["Title"] = "ایجاد درخواست";
+}
+@section Style
+{
+    <link href="~/assets/vendor/libs/nouislider/nouislider.css" rel="stylesheet" />
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-style1">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-controller="MonitoringManagment" asp-action="Index">مدیریت http ها</a>
+        </li>
+        <li class="breadcrumb-item active">افزودن</li>
+    </ol>
+</nav>
+<hr />
+<div class="card mb-4">
+    <h5 class="card-header">افزودن سرکشی جدید</h5>
+    <form asp-action="CreateHttp" method="post" class="card-body">
+        <h6>1.  جزئیات درخواست</h6>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="form-floating form-floating-outline">
+                    <input type="text" class="form-control" asp-for="Name">
+                    <label asp-for="Name"></label>
+                </div>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group input-group-merge">
+                    <div class="form-floating form-floating-outline">
+                        <input type="text" id="multicol-email" class="form-control" asp-for="Ip">
+                        <label asp-for="Ip"></label>
+                    </div>
+                    <span class="input-group-text" id="multicol-email2">192.168.1.1 یا exampel.com</span>
+                </div>
+                <span asp-validation-for="Ip" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label  asp-for="Interval" ></label>
+                <div  id="Interval" class="mt-4 mb-5"></div>
+                <span id="Interval_show"></span>
+                <input asp-for="Interval" value="3" type="hidden" id="Interval_value"></input>
+            </div>
+            <div class="col-md-6">
+                <label  asp-for="Timeout" ></label>
+                <div id="Timeout" class="mt-4 mb-5"></div>
+                <span id="Timeout_show"></span>
+                <input asp-for="Timeout" value="30" type="hidden" id="Timeout_value"></input>
+            </div>
+            <div class="col-md-6">
+                <input asp-switch-for="IsDoaminCheck" />
+            </div>
+            <div class="col-md-6">
+                <input asp-switch-for="IsSslVerification" />
+            </div>
+        </div>
+        <div class="pt-4">
+            <button type="submit" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light">ثبت</button>
+            <button type="reset" class="btn btn-label-secondary waves-effect">منصرف</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts
+    {
+    <script src="~/assets/vendor/libs/nouislider/nouislider.js"></script>
+    <script>
+        let Interval = document.getElementById("Interval");
+        let Interval_show = document.getElementById('Interval_show');
+        let Interval_value = document.getElementById('Interval_value');
+          noUiSlider.create(Interval, {
+           start: [3],
+          behaviour: "tap-drag",
+          step: 3,
+          tooltips: true,
+          range: { min: 3, max: 60 },
+          pips: { mode: "steps", stepped: !0, density: 5 },
+          direction: isRtl ? "rtl" : "ltr",
+        })
+        Interval.noUiSlider.on('change', function (value) {
+    Interval_show.innerHTML = value.toString().replace(".00","") +"  دقیقه ";
+    Interval_value.value = value.toString().replace(".00","");
+});
+        //-----------
+          let Timeout = document.getElementById("Timeout");
+        let Timeout_show = document.getElementById('Timeout_show');
+        let Timeout_value = document.getElementById('Timeout_value');
+
+         noUiSlider.create(Timeout, {
+           start: [15],
+          behaviour: "tap-drag",
+          step: 3,
+          tooltips: true,
+          range: { min: 3, max: 45 },
+          pips: { mode: "steps", stepped: !0, density: 5 },
+          direction: isRtl ? "rtl" : "ltr",
+        })
+        Timeout.noUiSlider.on('change', function (value) {
+    Timeout_show.innerHTML = value.toString().replace(".00","") +"  ثانیه ";
+    Timeout_value.value = value.toString().replace(".00","");
+});
+      
+    </script>
+}

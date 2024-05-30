@@ -1,0 +1,89 @@
+@font-face {
+    font-family: Anjoman;
+    font-style: normal;
+    font-weight: 100;
+    src: url("woff2/Anjoman-FaNum-Thin.woff2") format("woff2"), url("woff/Anjoman-FaNum-Thin.woff") format("woff");
+}
+
+@font-face {
+    font-family: Anjoman;
+    font-style: normal;
+    font-weight: 200;
+    src: url("woff2/Anjoman-FaNum-ExtraLight.woff2") format("woff2"), url("woff/Anjoman-FaNum-ExtraLight.woff") format("woff");
+}
+
+@font-face {
+    font-family: Anjoman;
+    font-style: normal;
+    font-weight: 300;
+    src: url("woff2/Anjoman-FaNum-Light.woff2") format("woff2"), url("woff/Anjoman-FaNum-Light.woff") format("woff");
+}
+
+@font-face {
+    font-family: Anjoman;
+    font-style: normal;
+    font-weight: 500;
+    src: url("woff2/Anjoman-FaNum-Medium.woff2") format("woff2"), url("woff/Anjoman-FaNum-Medium.woff") format("woff");
+}
+
+@font-face {
+    font-family: Anjoman-blod;
+    font-style: normal;
+    font-weight: 600;
+    src: url("woff2/Anjoman-FaNum-SemiBold.woff2") format("woff2"), url("woff/Anjoman-FaNum-SemiBold.woff") format("woff");
+}
+
+@font-face {
+    font-family: Anjoman;
+    font-style: normal;
+    font-weight: 750;
+    src: url("woff2/Anjoman-FaNum-ExtraBold.woff2") format("woff2"), url("woff/Anjoman-FaNum-ExtraBold.woff") format("woff");
+}
+
+@font-face {
+    font-family: Anjoman;
+    font-style: normal;
+    font-weight: 800;
+    src: url("woff2/Anjoman-FaNum-UltraBold.woff2") format("woff2"), url("woff/Anjoman-FaNum-UltraBold.woff") format("woff");
+}
+
+@font-face {
+    font-family: Anjoman;
+    font-style: normal;
+    font-weight: 850;
+    src: url("woff2/Anjoman-FaNum-Black.woff2") format("woff2"), url("woff/Anjoman-FaNum-Black.woff") format("woff");
+}
+
+@font-face {
+    font-family: Anjoman;
+    font-style: normal;
+    font-weight: 900;
+    src: url("woff2/Anjoman-FaNum-Heavy.woff2") format("woff2"), url("woff/Anjoman-FaNum-Heavy.woff") format("woff");
+}
+
+@font-face {
+    font-family: Anjoman;
+    font-style: normal;
+    font-weight: 1000;
+    src: url("woff2/Anjoman-FaNum-SuperHeavy.woff2") format("woff2"), url("woff/Anjoman-FaNum-SuperHeavy.woff") format("woff");
+}
+
+@font-face {
+    font-family: Anjoman;
+    font-style: normal;
+    font-weight: bold;
+    src: url("woff2/Anjoman-FaNum-Bold.woff2") format("woff2"), url("woff/Anjoman-FaNum-Bold.woff") format("woff");
+}
+
+@font-face {
+    font-family: Anjoman;
+    font-style: normal;
+    font-weight: normal;
+    src: url("woff2/Anjoman-FaNum-Regular.woff2") format("woff2"), url("woff/Anjoman-FaNum-Regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Anjoman VF";
+    src: url("woff/AnjomanwebLightGX.woff") format("woff-variations"), url("woff/AnjomanwebLightGX.woff") format("woff");
+    font-display: fallback;
+}

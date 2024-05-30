@@ -1,0 +1,16 @@
+﻿<script>
+    var ActiveationMenu = @(TempData["ActiveMenu"]!=null? Html.Raw(TempData["ActiveMenu"]) : Html.Raw("undefined"));
+    let element = document.getElementById(`${ActiveationMenu.menuId}`);
+    element.classList.add("active");
+    const collection = document.getElementById(`${ActiveationMenu.menuId}`).parentElement
+    if (collection.length !== 0) {
+        try {
+           
+            if (collection.parentElement.length !== 0 && collection.parentElement.localName == "li") {
+                collection.parentElement.className = "menu-item active open";
+            }
+        } catch (e) {
+            console.log(e);
+        } 
+    }
+</script>
